@@ -56,10 +56,12 @@ const LoginPage = () => {
             });
 
             if(result?.error) { 
-                showToast('Invalid credentials!', result?.error);
+                console.log(result?.error);
+                showToast('Invalid credentials!', 'error');
                 return;
             }
         } catch (error) {
+            console.log(error);
             showToast('Failed to login. Please try again later!', 'error');
         } finally {
             setSubmitting(true);

@@ -53,11 +53,13 @@ const RegisterPage = () => {
             });
 
             if(result?.error) { 
+                console.log(result?.error);
                 showToast('Invalid credentials!', 'error');
                 return;
             }
             showToast('Register successful!', 'success');
         } catch (error) {
+            console.log(error);
             showToast('Failed to login. Please try again later!', 'error');
         } finally {
             setSubmitting(true);
