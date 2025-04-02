@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
-import DefaultAlert from '../components/Common/CustomAlert/DefaultAlert';
+import dynamic from 'next/dynamic';
+
+const DefaultAlert = dynamic(() => import('../components/Common/CustomAlert/DefaultAlert'), {
+    ssr: false,
+});
 
 type AlertContextType = {
     showAlert: (message: string, type: string) => void;
@@ -14,7 +18,7 @@ export const AlertProvider = ({ children }: { children: React.ReactNode }) => {
 
     const showAlert = (message: string, type: string) => {
         setAlert({ visible: true, message, type });
-        console.log("Toast state:", { visible: true, message, type });
+        console.log("Alert state:", { visible: true, message, type });
         setTimeout(() => {
             setAlert({ visible: false, message: '', type: '' });
         }, 3000);
@@ -23,7 +27,13 @@ export const AlertProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <AlertContext.Provider value={{ showAlert }}>
             {children}
-            {alert.visible && <DefaultAlert type={alert.type as "success" | "warning" | "error"} message={alert.message} onClose={() => setAlert({ visible: false, message: '', type: '' })} />}
+            {alert.visible && (
+                <DefaultAlert
+                    type={alert.type as "success" | "warning" | "error"}
+                    message={alert.message}
+                    onClose={() => setAlert({ visible: false, message: '', type: '' })}
+                />
+            )}
         </AlertContext.Provider>
     );
 };

@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
-import DefaultToast from '../components/Common/CustomToast/DefaultToast';
+import dynamic from 'next/dynamic';
+
+const DefaultToast = dynamic(() => import('../components/Common/CustomToast/DefaultToast'), {
+    ssr: false,
+});
 
 type ToastContextType = {
     showToast: (message: string, type: string) => void;
@@ -23,7 +27,13 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
-            {toast.visible && <DefaultToast type={toast.type as "success" | "warning" | "error"} message={toast.message} onClose={() => setToast({ visible: false, message: '', type: '' })} />}
+            {toast.visible && (
+                <DefaultToast
+                    type={toast.type as "success" | "warning" | "error"}
+                    message={toast.message}
+                    onClose={() => setToast({ visible: false, message: '', type: '' })}
+                />
+            )}
         </ToastContext.Provider>
     );
 };
