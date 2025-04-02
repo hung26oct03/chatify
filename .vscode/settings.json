@@ -1,0 +1,10 @@
+{
+<<<<<<< HEAD
+  "i18n-ally.localesPaths": ["public/locales"]
+}
+=======
+  "i18n-ally.localesPaths": [
+    "public/locales"
+  ]
+}
+>>>>>>> 96de803b295a636a603a1e626ca42ec46267f222

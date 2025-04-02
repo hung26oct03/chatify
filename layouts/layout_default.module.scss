@@ -1,0 +1,31 @@
+
+
+$desktop1-width: 1180px;
+$tablet-width: 768px;
+
+@mixin desktop1 {
+    @media (min-width: #{$desktop1-width}) {
+        @content;
+    }
+}
+
+@mixin desktop2 {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop1-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width}) {
+      @content;
+  }
+}
+
+.container {
+  .animation_lotie {
+    @include mobile {
+      width: 350px !important;
+      height: 350px !important;
+    }
+  }
+}

@@ -1,0 +1,107 @@
+.overlay {
+    background: rgb(113,208,255);
+    background: linear-gradient(rgba(113,208,255,0.9831582291119573) 26%, rgba(76,141,255,1) 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+
+    .overlay_panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transition: transform 0.6s ease-in-out;
+
+        .overlay_panel_left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.6s ease-in-out;
+
+            .img_logo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .title_overlay {
+                font-size: 26px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .para {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+
+            .btn_signin {
+                padding: 10px 40px;
+                border-radius: 25px;
+                font-size: 16px;
+                background: transparent;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                cursor: pointer;
+                transition: background 0.5s ease;
+
+                &:focus {
+                    scale: 0.95;
+                }
+            }
+        }
+
+        .overlay_panel_right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            right: 0;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+
+            .img_logo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .title_overlay {
+                font-size: 26px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .para {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+
+            .btn_signup {
+                padding: 10px 40px;
+                border-radius: 25px;
+                font-size: 16px;
+                background: transparent;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                cursor: pointer;
+                transition: background 0.5s ease;
+
+                &:focus {
+                    scale: 0.95;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.btn_sign_in_gg {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #262a2e;
+    padding: 9px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    background-color: #262a2e;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #fff;
+        color: #262a2e;
+        transition: 0.3s;
+    }
+}
