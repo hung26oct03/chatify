@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 type ToastProps = {
@@ -8,6 +8,15 @@ type ToastProps = {
 };
 
 const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
     const renderIcon = () => {
         switch (type) {
@@ -41,7 +50,7 @@ const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
                             viewBox="0 0 20 20"
                         >
                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
-                        </svg> 
+                        </svg>
                         <span className="sr-only">Warning</span>
                     </div>
                 );
@@ -56,7 +65,7 @@ const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
                             viewBox="0 0 20 20"
                         >
                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
-                        </svg> 
+                        </svg>
                         <span className="sr-only">Error</span>
                     </div>
                 );
@@ -68,13 +77,14 @@ const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
     return createPortal(
         <div
             id="alert-root"
-            role='alert'
+            role="alert"
             className="flex h-full justify-center w-full fixed inset-0 items-center z-[9999]"
         >
             <div className="h-full p-4 w-full max-w-md md:h-auto relative">
-                <div className="p-4 rounded-lg shadow text-cente dark:bg-gray-800 relative sm:p-5"
+                <div
+                    className="p-4 rounded-lg shadow text-cente dark:bg-gray-800 relative sm:p-5"
                     style={{
-                        backgroundColor: 'rgba(0,0,0,0.7)'
+                        backgroundColor: 'rgba(0,0,0,0.7)',
                     }}
                 >
                     <button
@@ -89,11 +99,11 @@ const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                        <path
-                            fillRule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                        />
+                            <path
+                                fillRule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                            />
                         </svg>
                         <span className="sr-only">Close modal</span>
                     </button>
@@ -103,8 +113,7 @@ const DefaultAlert: React.FC<ToastProps> = ({ type, message, onClose }) => {
                     </p>
                 </div>
             </div>
-        </div>
-        ,
+        </div>,
         document.body
     );
 };
